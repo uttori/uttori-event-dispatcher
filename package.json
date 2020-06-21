@@ -50,9 +50,12 @@
     "tsd-jsdoc": "^2.5.0"
   },
   "files": [
-    "src/*"
+    "src/*",
+    "types/*"
   ],
   "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "typings": "types/index.d.ts",
   "ava": {
     "files": [
       "test/**/*.test.js"
