@@ -1,0 +1,58 @@
+[![view on npm](http://img.shields.io/npm/v/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
+[![npm module downloads](http://img.shields.io/npm/dt/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
+[![Build Status](https://travis-ci.org/uttori/uttori-event-dispatcher.svg?branch=master)](https://travis-ci.org/uttori/uttori-event-dispatcher)
+[![Dependency Status](https://david-dm.org/uttori/uttori-event-dispatcher.svg)](https://david-dm.org/uttori/uttori-event-dispatcher)
+[![Coverage Status](https://coveralls.io/repos/github/uttori/uttori-event-dispatcher/badge.svg?branch=master)](https://coveralls.io/github/uttori/uttori-event-dispatcher?branch=master)
+
+# Uttori Event Dispatcher
+
+An event bus system for registering, unregistering and triggering events.
+
+## Install
+
+```bash
+npm install --save @uttori/event-dispatcher
+```
+
+# Config
+
+```js
+{
+}
+```
+
+* * *
+
+# Example
+
+```js
+ * const hooks = new EventDispatcher();
+ * hooks.on('update', callback);
+ * hooks.dispatch('update', { data }, this);
+ * hooks.off('update', callback);
+```
+
+# API Reference
+
+{{>main}}
+
+* * *
+
+## Tests
+
+To run the test suite, first install the dependencies, then run `npm test`:
+
+```bash
+npm install
+npm test
+DEBUG=Uttori* npm test
+```
+
+## Contributors
+
+* [Matthew Callis](https://github.com/MatthewCallis)
+* [You](https://github.com/YOU)
+
+## License
+
+* [MIT](LICENSE)
