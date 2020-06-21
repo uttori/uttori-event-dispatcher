@@ -19,10 +19,10 @@ npm install --save @uttori/event-dispatcher
 # Example
 
 ```js
- * const hooks = new EventDispatcher();
- * hooks.on('update', callback);
- * hooks.dispatch('update', { data }, this);
- * hooks.off('update', callback);
+const hooks = new EventDispatcher();
+hooks.on('update', callback);
+hooks.dispatch('update', { data }, this);
+hooks.off('update', callback);
 ```
 
 # API Reference
