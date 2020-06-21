@@ -14,13 +14,6 @@ An event bus system for registering, unregistering and triggering events.
 npm install --save @uttori/event-dispatcher
 ```
 
-# Config
-
-```js
-{
-}
-```
-
 * * *
 
 # Example
