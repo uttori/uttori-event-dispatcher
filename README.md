@@ -1,5 +1,5 @@
-[![view on npm](http://img.shields.io/npm/v/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
-[![npm module downloads](http://img.shields.io/npm/dt/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
+[![view on npm](https://img.shields.io/npm/v/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
+[![npm module downloads](https://img.shields.io/npm/dt/uttori-event-dispatcher.svg)](https://www.npmjs.org/package/uttori-event-dispatcher)
 [![Build Status](https://travis-ci.org/uttori/uttori-event-dispatcher.svg?branch=master)](https://travis-ci.org/uttori/uttori-event-dispatcher)
 [![Dependency Status](https://david-dm.org/uttori/uttori-event-dispatcher.svg)](https://david-dm.org/uttori/uttori-event-dispatcher)
 [![Coverage Status](https://coveralls.io/repos/github/uttori/uttori-event-dispatcher/badge.svg?branch=master)](https://coveralls.io/github/uttori/uttori-event-dispatcher?branch=master)

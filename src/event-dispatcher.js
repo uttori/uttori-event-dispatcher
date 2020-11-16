@@ -69,7 +69,7 @@ class EventDispatcher {
    * @param {string} label - The human readable identifier of the event.
    * @param {*} data - Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] - Context to help with updating or modification of the data.
-   * @returns {*} - The original input data, either modified or untouched.
+   * @returns {Promise<*>} - The original input data, either modified or untouched.
    * @example
    * output = await bus.filter('loaded', { data }, this);
    * @async
