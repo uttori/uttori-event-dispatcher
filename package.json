@@ -1,6 +1,6 @@
 {
   "name": "@uttori/event-dispatcher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An event bus system for registering, unregistering and triggering events.",
   "author": "Matthew Callis <matthew.callis@gmail.com>",
   "contributors": [],
