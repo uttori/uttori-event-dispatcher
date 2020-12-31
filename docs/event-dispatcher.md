@@ -15,7 +15,7 @@ An event bus system for registering, unregistering and triggering events.
     * [new EventDispatcher()](#new_EventDispatcher_new)
     * _instance_
         * [.validate(label, data, [context])](#EventDispatcher+validate) ⇒ <code>Promise</code>
-        * [.filter(label, data, [context])](#EventDispatcher+filter) ⇒ <code>\*</code>
+        * [.filter(label, data, [context])](#EventDispatcher+filter) ⇒ <code>Promise.&lt;\*&gt;</code>
         * [.dispatch(label, data, [context])](#EventDispatcher+dispatch)
         * [.fetch(label, data, [context])](#EventDispatcher+fetch) ⇒ <code>Promise.&lt;Array&gt;</code>
         * [.on(label, callback)](#EventDispatcher+on)
@@ -56,11 +56,11 @@ is_spam = await bus.validate('check-for-spam', { data }, this);
 ```
 <a name="EventDispatcher+filter"></a>
 
-### eventDispatcher.filter(label, data, [context]) ⇒ <code>\*</code>
+### eventDispatcher.filter(label, data, [context]) ⇒ <code>Promise.&lt;\*&gt;</code>
 Fires off an event with passed in data and context for a given label.
 
 **Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>\*</code> - - The original input data, either modified or untouched.  
+**Returns**: <code>Promise.&lt;\*&gt;</code> - - The original input data, either modified or untouched.  
 
 | Param | Type | Description |
 | --- | --- | --- |

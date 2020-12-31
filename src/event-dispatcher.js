@@ -1,4 +1,5 @@
-const debug = require('debug')('Uttori.EventDispatcher');
+/* eslint-disable unicorn/no-array-callback-reference */
+let debug = () => {}; try { debug = require('debug')('Uttori.EventDispatcher'); } catch {}
 const UttoriEvent = require('./event');
 
 /**

@@ -1,4 +1,5 @@
-const debug = require('debug')('Uttori.UttoriEvent');
+/* eslint-disable unicorn/no-array-reduce */
+let debug = () => {}; try { debug = require('debug')('Uttori.UttoriEvent'); } catch {}
 
 /**
  * Event class used in conjunction with the Event Dispatcher.
@@ -20,7 +21,7 @@ class UttoriEvent {
    */
   constructor(label) {
     if (typeof label !== 'string' || label.length === 0) {
-      const error = `Event label must be a string, got: ${typeof label}`;
+      const error = `Event label must be a string, got: "${typeof label}"`;
       debug(error);
       throw new Error(error);
     }
