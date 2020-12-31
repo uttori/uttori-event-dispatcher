@@ -1,6 +1,6 @@
 [![view on npm](https://img.shields.io/npm/v/@uttori/event-dispatcher.svg)](https://www.npmjs.org/package/@uttori/event-dispatcher)
 [![npm module downloads](https://img.shields.io/npm/dt/@uttori/event-dispatcher.svg)](https://www.npmjs.org/package/@uttori/event-dispatcher)
-[![Build Status](https://travis-ci.org/uttori/uttori-event-dispatcher.svg?branch=master)](https://travis-ci.org/uttori/uttori-event-dispatcher)
+[![Build Status](https://travis-ci.com/uttori/uttori-event-dispatcher.svg?branch=master)](https://travis-ci.com/uttori/uttori-event-dispatcher)
 [![Dependency Status](https://david-dm.org/uttori/uttori-event-dispatcher.svg)](https://david-dm.org/uttori/uttori-event-dispatcher)
 [![Coverage Status](https://coveralls.io/repos/github/uttori/uttori-event-dispatcher/badge.svg?branch=master)](https://coveralls.io/github/uttori/uttori-event-dispatcher?branch=master)
 [![Tree-Shaking Support](https://badgen.net/bundlephobia/tree-shaking/@uttori/event-dispatcher)](https://bundlephobia.com/result?p=@uttori/event-dispatcher)
@@ -36,7 +36,7 @@ hooks.off('update', callback);
 ## EventDispatcher
 An event bus system for registering, unregistering and triggering events.
 
-**Kind**: global class  
+**Kind**: global class
 **Properties**
 
 | Name | Type | Description |
@@ -62,7 +62,7 @@ An event bus system for registering, unregistering and triggering events.
 ### new EventDispatcher()
 Creates a new EventDispatcher instance.
 
-**Example** *(new EventDispatcher())*  
+**Example** *(new EventDispatcher())*
 ```js
 const bus = new EventDispatcher();
 bus.on('update', callback);
@@ -74,8 +74,8 @@ bus.off('update', callback);
 ### eventDispatcher.validate(label, data, [context]) ⇒ <code>Promise</code>
 Fires off an event with passed in data and context for a given label.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise</code> - - The conclusion of the spam checks, true being it is spam, false meaning it is clean.  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
+**Returns**: <code>Promise</code> - - The conclusion of the spam checks, true being it is spam, false meaning it is clean.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -83,7 +83,7 @@ Fires off an event with passed in data and context for a given label.
 | data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
-**Example**  
+**Example**
 ```js
 is_spam = await bus.validate('check-for-spam', { data }, this);
 ```
@@ -92,8 +92,8 @@ is_spam = await bus.validate('check-for-spam', { data }, this);
 ### eventDispatcher.filter(label, data, [context]) ⇒ <code>Promise.&lt;\*&gt;</code>
 Fires off an event with passed in data and context for a given label.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise.&lt;\*&gt;</code> - - The original input data, either modified or untouched.  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
+**Returns**: <code>Promise.&lt;\*&gt;</code> - - The original input data, either modified or untouched.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -101,7 +101,7 @@ Fires off an event with passed in data and context for a given label.
 | data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
-**Example**  
+**Example**
 ```js
 output = await bus.filter('loaded', { data }, this);
 ```
@@ -110,7 +110,7 @@ output = await bus.filter('loaded', { data }, this);
 ### eventDispatcher.dispatch(label, data, [context])
 Fires off an event with passed in data and context for a given label.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -118,7 +118,7 @@ Fires off an event with passed in data and context for a given label.
 | data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
-**Example**  
+**Example**
 ```js
 bus.dispatch('loaded', { data }, this);
 ```
@@ -127,8 +127,8 @@ bus.dispatch('loaded', { data }, this);
 ### eventDispatcher.fetch(label, data, [context]) ⇒ <code>Promise.&lt;Array&gt;</code>
 Fires off an event with passed in data and context for a given label and returns an array of the results.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise.&lt;Array&gt;</code> - - An array of the results.  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
+**Returns**: <code>Promise.&lt;Array&gt;</code> - - An array of the results.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -136,7 +136,7 @@ Fires off an event with passed in data and context for a given label and returns
 | data | <code>\*</code> | Data to be used by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
-**Example**  
+**Example**
 ```js
 popular = await bus.fetch('popular-documents', { limit: 10 }, this);
 ```
@@ -146,14 +146,14 @@ popular = await bus.fetch('popular-documents', { limit: 10 }, this);
 Add a function to an event that will be called when the label is dispatched.
 If no label is found, one is created.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
 | callback | <code>function</code> | Function to be called when the event is fired. |
 
-**Example**  
+**Example**
 ```js
 bus.on('loaded', callback);
 ```
@@ -163,14 +163,14 @@ bus.on('loaded', callback);
 Add a function to an event that will be called only once when the label is dispatched.
 Uses the `EventDispatcher.on` method with a function wrapped to call off on use.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
 | callback | <code>function</code> | Function to be called when the event is fired. |
 
-**Example**  
+**Example**
 ```js
 bus.once('one-time-process', callback);
 ```
@@ -179,14 +179,14 @@ bus.once('one-time-process', callback);
 ### eventDispatcher.off(label, callback)
 Remove a function from an event.
 
-**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
+**Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
 | callback | <code>function</code> | Function to be removed. |
 
-**Example**  
+**Example**
 ```js
 bus.off('loaded', callback);
 ```
@@ -195,13 +195,13 @@ bus.off('loaded', callback);
 ### EventDispatcher.check(label)
 Verifies an event label.
 
-**Kind**: static method of [<code>EventDispatcher</code>](#EventDispatcher)  
+**Kind**: static method of [<code>EventDispatcher</code>](#EventDispatcher)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
 
-**Example**  
+**Example**
 ```js
 EventDispatcher.check('event'); // No Error
 EventDispatcher.check(1); // Throws Error
