@@ -1,11 +1,11 @@
-/* eslint-disable unicorn/no-array-reduce */
+/** @type {Function} */
 let debug = () => {}; try { debug = require('debug')('Uttori.UttoriEvent'); } catch {}
 
 /**
  * Event class used in conjunction with the Event Dispatcher.
  *
- * @property {string} label - The human readable identifier of the event.
- * @property {Function[]} callbacks - The functions to be executed when an event is fired.
+ * @property {string} label The human readable identifier of the event.
+ * @property {Function[]} callbacks The functions to be executed when an event is fired.
  * @example <caption>new UttoriEvent(label)</caption>
  * const event = new UttoriEvent('event-label');
  * event.register(callback);
@@ -16,7 +16,7 @@ class UttoriEvent {
   /**
    * Creates a new event UttoriEvent.
    *
-   * @param {string} label - The human readable identifier of the event.
+   * @param {string} label The human readable identifier of the event.
    * @class
    */
   constructor(label) {
@@ -32,7 +32,7 @@ class UttoriEvent {
   /**
    * Add a function to an event that will be called when the event is fired.
    *
-   * @param {Function} callback - Function to be called when the event is fired.
+   * @param {Function} callback Function to be called when the event is fired.
    * @example
    * event.register(callback);
    */
@@ -54,7 +54,7 @@ class UttoriEvent {
   /**
    * Remove a function from an event that would be called when the event is fired.
    *
-   * @param {Function} callback - Function to be removed from the event.
+   * @param {Function} callback Function to be removed from the event.
    * @example
    * event.unregister(callback);
    */
@@ -76,12 +76,12 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context.
    *
-   * @param {*} data - Data to be used, updated, or modified by event callbacks.
-   * @param {object} [context] - Context to help with updating or modification of the data.
-   * @returns {Promise} - A Promise resolving to the result of the check, either true (invalid) or false (valid).
+   * @async
+   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {object} [context] Context to help with updating or modification of the data.
+   * @returns {Promise} A Promise resolving to the result of the check, either true (invalid) or false (valid).
    * @example
    * is_spam = await event.validate({ data }, this);
-   * @async
    */
   async validate(data, context) {
     debug('validate:', this.label);
@@ -103,12 +103,12 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context.
    *
-   * @param {*} data - Data to be used, updated, or modified by event callbacks.
-   * @param {object} [context] - Context to help with updating or modification of the data.
-   * @returns {Promise} - A Promise resolving to the original input data, either modified or untouched.
+   * @async
+   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {object} [context] Context to help with updating or modification of the data.
+   * @returns {Promise} A Promise resolving to the original input data, either modified or untouched.
    * @example
    * output = await event.filter({ data }, this);
-   * @async
    */
   async filter(data, context) {
     debug('filter:', this.label);
@@ -132,8 +132,8 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context.
    *
-   * @param {*} data - Data to be used, updated, or modified by event callbacks.
-   * @param {object} [context] - Context to help with updating or modification of the data.
+   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {object} [context] Context to help with updating or modification of the data.
    * @example
    * event.fire({ data }, this);
    */
@@ -149,12 +149,12 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context and returns their output.
    *
-   * @param {*} data - Data to be used by event callbacks.
-   * @param {object} [context] - Context to help with computing of the data.
-   * @returns {Promise<Array>} - An array of the results from the fetch.
+   * @async
+   * @param {*} data Data to be used by event callbacks.
+   * @param {object} [context] Context to help with computing of the data.
+   * @returns {Promise<Array>} An array of the results from the fetch.
    * @example
    * output = await event.fetch({ data }, this);
-   * @async
    */
   async fetch(data, context) {
     debug('fetch:', this.label);

@@ -1,3 +1,18 @@
+## Classes
+
+<dl>
+<dt><a href="#UttoriEvent">UttoriEvent</a></dt>
+<dd><p>Event class used in conjunction with the Event Dispatcher.</p>
+</dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#debug">debug()</a> : <code>function</code></dt>
+<dd></dd>
+</dl>
+
 <a name="UttoriEvent"></a>
 
 ## UttoriEvent
@@ -73,7 +88,7 @@ event.unregister(callback);
 Executes all the callbacks present on an event with passed in data and context.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise</code> - - A Promise resolving to the result of the check, either true (invalid) or false (valid).  
+**Returns**: <code>Promise</code> - A Promise resolving to the result of the check, either true (invalid) or false (valid).  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -90,7 +105,7 @@ is_spam = await event.validate({ data }, this);
 Executes all the callbacks present on an event with passed in data and context.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise</code> - - A Promise resolving to the original input data, either modified or untouched.  
+**Returns**: <code>Promise</code> - A Promise resolving to the original input data, either modified or untouched.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -123,7 +138,7 @@ event.fire({ data }, this);
 Executes all the callbacks present on an event with passed in data and context and returns their output.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise.&lt;Array&gt;</code> - - An array of the results from the fetch.  
+**Returns**: <code>Promise.&lt;Array&gt;</code> - An array of the results from the fetch.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -134,3 +149,7 @@ Executes all the callbacks present on an event with passed in data and context a
 ```js
 output = await event.fetch({ data }, this);
 ```
+<a name="debug"></a>
+
+## debug() : <code>function</code>
+**Kind**: global function  

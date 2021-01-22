@@ -181,13 +181,9 @@ test('#filter(data, context): returns the data', async (t) => {
     const output = await Promise.resolve(data);
     return `${output}d`;
   };
-  const addE = async (data) => {
-    const promise = new Promise((resolve, _reject) => {
-      setTimeout(() => resolve(`${data}e`), 500);
-    });
-    const result = await promise;
-    return result;
-  };
+  const addE = async (data) => new Promise((resolve, _reject) => {
+    setTimeout(() => resolve(`${data}e`), 500);
+  });
   const addF = async (data) => `${data}f`;
   const nop = async (data) => Promise.resolve(data);
 
@@ -251,13 +247,9 @@ test('#fetch(data, context): returns the data', async (t) => {
     const output = await Promise.resolve(data);
     return `${output}d`;
   };
-  const addE = async (data) => {
-    const promise = new Promise((resolve, _reject) => {
-      setTimeout(() => resolve(`${data}e`), 500);
-    });
-    const result = await promise;
-    return result;
-  };
+  const addE = async (data) => new Promise((resolve, _reject) => {
+    setTimeout(() => resolve(`${data}e`), 501);
+  });
   const addF = async (data) => `${data}f`;
   const nop = async (data) => Promise.resolve(data);
 

@@ -1,3 +1,18 @@
+## Classes
+
+<dl>
+<dt><a href="#EventDispatcher">EventDispatcher</a></dt>
+<dd><p>An event bus system for registering, unregistering and triggering events.</p>
+</dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#debug">debug()</a> : <code>function</code></dt>
+<dd></dd>
+</dl>
+
 <a name="EventDispatcher"></a>
 
 ## EventDispatcher
@@ -42,7 +57,7 @@ bus.off('update', callback);
 Fires off an event with passed in data and context for a given label.
 
 **Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise</code> - - The conclusion of the spam checks, true being it is spam, false meaning it is clean.  
+**Returns**: <code>Promise</code> - The conclusion of the spam checks, true being it is spam, false meaning it is clean.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -60,7 +75,7 @@ is_spam = await bus.validate('check-for-spam', { data }, this);
 Fires off an event with passed in data and context for a given label.
 
 **Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise.&lt;\*&gt;</code> - - The original input data, either modified or untouched.  
+**Returns**: <code>Promise.&lt;\*&gt;</code> - The original input data, either modified or untouched.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -95,7 +110,7 @@ bus.dispatch('loaded', { data }, this);
 Fires off an event with passed in data and context for a given label and returns an array of the results.
 
 **Kind**: instance method of [<code>EventDispatcher</code>](#EventDispatcher)  
-**Returns**: <code>Promise.&lt;Array&gt;</code> - - An array of the results.  
+**Returns**: <code>Promise.&lt;Array&gt;</code> - An array of the results.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -173,3 +188,7 @@ Verifies an event label.
 EventDispatcher.check('event'); // No Error
 EventDispatcher.check(1); // Throws Error
 ```
+<a name="debug"></a>
+
+## debug() : <code>function</code>
+**Kind**: global function  

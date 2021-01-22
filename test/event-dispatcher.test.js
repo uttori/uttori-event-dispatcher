@@ -173,13 +173,9 @@ test('#filter(label, data, context): can return dispatched event modified data',
     const output = await Promise.resolve(data);
     return { ...output, update: `${data.update}d` };
   };
-  const addE = async (data) => {
-    const promise = new Promise((resolve, _reject) => {
-      setTimeout(() => resolve({ ...data, update: `${data.update}e` }), 500);
-    });
-    const result = await promise;
-    return result;
-  };
+  const addE = async (data) => new Promise((resolve, _reject) => {
+    setTimeout(() => resolve({ ...data, update: `${data.update}e` }), 500);
+  });
   const addF = async (data) => ({ ...data, update: `${data.update}f` });
   const nop = async (data) => Promise.resolve(data);
 
@@ -225,13 +221,9 @@ test('#fetch(label, data, context): can return dispatched event modified data', 
     const output = await Promise.resolve(data);
     return `${data.update}d`;
   };
-  const addE = async (data) => {
-    const promise = new Promise((resolve, _reject) => {
-      setTimeout(() => resolve(`${data.update}e`), 500);
-    });
-    const result = await promise;
-    return result;
-  };
+  const addE = async (data) => new Promise((resolve, _reject) => {
+    setTimeout(() => resolve(`${data.update}e`), 500);
+  });
   const addF = async (data) => (`${data.update}f`);
   const nop = async (data) => Promise.resolve(data);
 
