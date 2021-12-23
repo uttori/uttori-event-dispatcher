@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.1](https://github.com/uttori/uttori-event-dispatcher/compare/v2.0.0...v2.0.1) - 2021-12-23
+
+- 🧰 Tweak types.
+- 🎁 Update dev dependencies
+
 ## [2.0.0](https://github.com/uttori/uttori-event-dispatcher/compare/v1.0.3...v2.0.0) - 2021-01-21
 
 - 🧰 Add ESM Support

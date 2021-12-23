@@ -80,7 +80,6 @@ class EventDispatcher {
     EventDispatcher.check(label);
     const event = this.events[label];
     if (event) {
-      // eslint-disable-next-line unicorn/no-array-callback-reference
       data = await event.filter(data, context);
     } else {
       debug('No event to fire:', label);

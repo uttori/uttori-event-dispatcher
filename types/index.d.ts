@@ -1,3 +1,5 @@
+declare module '@uttori/event-dispatcher';
+
 declare module "event" {
     export = UttoriEvent;
     class UttoriEvent {

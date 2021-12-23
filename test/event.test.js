@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/no-array-callback-reference */
-/* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable ramda/prefer-ramda-boolean, no-new */
 const test = require('ava');
 const sinon = require('sinon');
