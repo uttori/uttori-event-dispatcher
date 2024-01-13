@@ -1,18 +1,3 @@
-## Classes
-
-<dl>
-<dt><a href="#UttoriEvent">UttoriEvent</a></dt>
-<dd><p>Event class used in conjunction with the Event Dispatcher.</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#debug">debug()</a> : <code>function</code></dt>
-<dd></dd>
-</dl>
-
 <a name="UttoriEvent"></a>
 
 ## UttoriEvent
@@ -24,17 +9,19 @@ Event class used in conjunction with the Event Dispatcher.
 | Name | Type | Description |
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
-| callbacks | <code>Array.&lt;function()&gt;</code> | The functions to be executed when an event is fired. |
+| callbacks | <code>Array.&lt;UttoriEventCallback&gt;</code> | The functions to be executed when an event is fired. |
 
 
 * [UttoriEvent](#UttoriEvent)
     * [new UttoriEvent(label)](#new_UttoriEvent_new)
+    * [.label](#UttoriEvent+label) : <code>string</code>
+    * [.callbacks](#UttoriEvent+callbacks) : <code>Array.&lt;UttoriEventCallback&gt;</code>
     * [.register(callback)](#UttoriEvent+register)
     * [.unregister(callback)](#UttoriEvent+unregister)
-    * [.validate(data, [context])](#UttoriEvent+validate) ⇒ <code>Promise</code>
-    * [.filter(data, [context])](#UttoriEvent+filter) ⇒ <code>Promise</code>
+    * [.validate(data, [context])](#UttoriEvent+validate) ⇒ <code>Promise.&lt;boolean&gt;</code>
+    * [.filter(data, [context])](#UttoriEvent+filter) ⇒ <code>Promise.&lt;unknown&gt;</code>
     * [.fire(data, [context])](#UttoriEvent+fire)
-    * [.fetch(data, [context])](#UttoriEvent+fetch) ⇒ <code>Promise.&lt;Array&gt;</code>
+    * [.fetch(data, [context])](#UttoriEvent+fetch) ⇒ <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code>
 
 <a name="new_UttoriEvent_new"></a>
 
@@ -46,12 +33,20 @@ Creates a new event UttoriEvent.
 | --- | --- | --- |
 | label | <code>string</code> | The human readable identifier of the event. |
 
-**Example** *(new UttoriEvent(label))*  
+**Example**  
 ```js
 const event = new UttoriEvent('event-label');
 event.register(callback);
 event.fire({ data });
 ```
+<a name="UttoriEvent+label"></a>
+
+### uttoriEvent.label : <code>string</code>
+**Kind**: instance property of [<code>UttoriEvent</code>](#UttoriEvent)  
+<a name="UttoriEvent+callbacks"></a>
+
+### uttoriEvent.callbacks : <code>Array.&lt;UttoriEventCallback&gt;</code>
+**Kind**: instance property of [<code>UttoriEvent</code>](#UttoriEvent)  
 <a name="UttoriEvent+register"></a>
 
 ### uttoriEvent.register(callback)
@@ -61,7 +56,7 @@ Add a function to an event that will be called when the event is fired.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>function</code> | Function to be called when the event is fired. |
+| callback | <code>UttoriEventCallback.&lt;unknown, unknown&gt;</code> | Function to be called when the event is fired. |
 
 **Example**  
 ```js
@@ -76,7 +71,7 @@ Remove a function from an event that would be called when the event is fired.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>function</code> | Function to be removed from the event. |
+| callback | <code>UttoriEventCallback.&lt;unknown, unknown&gt;</code> | Function to be removed from the event. |
 
 **Example**  
 ```js
@@ -84,32 +79,32 @@ event.unregister(callback);
 ```
 <a name="UttoriEvent+validate"></a>
 
-### uttoriEvent.validate(data, [context]) ⇒ <code>Promise</code>
+### uttoriEvent.validate(data, [context]) ⇒ <code>Promise.&lt;boolean&gt;</code>
 Executes all the callbacks present on an event with passed in data and context.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise</code> - A Promise resolving to the result of the check, either true (invalid) or false (valid).  
+**Returns**: <code>Promise.&lt;boolean&gt;</code> - A Promise resolving to the result of the check, either true (invalid) or false (valid).  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
 ```js
-is_spam = await event.validate({ data }, this);
+const is_spam = await event.validate({ data }, this);
 ```
 <a name="UttoriEvent+filter"></a>
 
-### uttoriEvent.filter(data, [context]) ⇒ <code>Promise</code>
+### uttoriEvent.filter(data, [context]) ⇒ <code>Promise.&lt;unknown&gt;</code>
 Executes all the callbacks present on an event with passed in data and context.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise</code> - A Promise resolving to the original input data, either modified or untouched.  
+**Returns**: <code>Promise.&lt;unknown&gt;</code> - A Promise resolving to the original input data, either modified or untouched.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
@@ -125,7 +120,7 @@ Executes all the callbacks present on an event with passed in data and context.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>\*</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
@@ -134,22 +129,18 @@ event.fire({ data }, this);
 ```
 <a name="UttoriEvent+fetch"></a>
 
-### uttoriEvent.fetch(data, [context]) ⇒ <code>Promise.&lt;Array&gt;</code>
+### uttoriEvent.fetch(data, [context]) ⇒ <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code>
 Executes all the callbacks present on an event with passed in data and context and returns their output.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise.&lt;Array&gt;</code> - An array of the results from the fetch.  
+**Returns**: <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code> - An array of the results from the fetch.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>\*</code> | Data to be used by event callbacks. |
+| data | <code>unknown</code> | Data to be used by event callbacks. |
 | [context] | <code>object</code> | Context to help with computing of the data. |
 
 **Example**  
 ```js
 output = await event.fetch({ data }, this);
 ```
-<a name="debug"></a>
-
-## debug() : <code>function</code>
-**Kind**: global function  

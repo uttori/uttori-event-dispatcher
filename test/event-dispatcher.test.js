@@ -1,7 +1,7 @@
 /* eslint-disable no-new */
-const test = require('ava');
-const sinon = require('sinon');
-const { EventDispatcher } = require('../src');
+import test from 'ava';
+import sinon from 'sinon';
+import { EventDispatcher } from '../src/index.js';
 
 const a = () => false;
 const b = () => true;

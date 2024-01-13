@@ -19,88 +19,89 @@
     "event bus"
   ],
   "engines": {
-    "node": ">= 12"
+    "node": ">= 20"
   },
   "optionalDependencies": {
     "debug": "^4.3.4"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.46.1",
-    "ava": "^5.1.0",
-    "eslint": "^8.30.0",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "ava": "^6.0.1",
+    "c8": "^9.1.0",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-anti-trojan-source": "^1.1.0",
-    "eslint-plugin-ava": "^13.2.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsdoc": "^39.6.4",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-anti-trojan-source": "^1.1.1",
+    "eslint-plugin-ava": "^14.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsdoc": "^48.0.2",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-no-inferred-method-name": "^2.0.0",
-    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-optimize-regex": "^1.2.1",
-    "eslint-plugin-ramda": "^2.5.1",
-    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-security": "^2.1.0",
+    "eslint-plugin-sonarjs": "^0.23.0",
     "eslint-plugin-xss": "^0.1.12",
-    "jsdoc": "^4.0.0",
+    "jsdoc": "^4.0.2",
     "jsdoc-to-markdown": "^8.0.0",
-    "nyc": "^15.1.0",
+    "jsdoc-tsimport-plugin": "^1.0.5",
     "pre-commit": "^1.2.2",
-    "release-it": "^15.5.1",
-    "sinon": "^15.0.1",
-    "typescript": "^4.9.4"
+    "release-it": "^17.0.1",
+    "sinon": "^17.0.1",
+    "typescript": "^5.3.3"
   },
   "files": [
-    "esm/*",
-    "src/*",
-    "types/*"
+    "dist/*",
+    "src/*"
   ],
-  "main": "src/index.js",
-  "module": "esm/index.js",
-  "types": "types/index.d.ts",
-  "typings": "types/index.d.ts",
+  "module": "src/index.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./src/index.js",
-      "import": "./esm/index.js"
+      "import": "./src/index.js"
     },
     "./event": {
-      "require": "./src/event.js"
+      "import": "./src/event.js"
     },
     "./event-dispatcher": {
-      "require": "./src/event-dispatcher.js"
+      "import": "./src/event-dispatcher.js"
     }
   },
   "ava": {
     "files": [
       "test/**/*.test.js"
     ],
-    "ignoredByWatcher": [
-      "!src/**/*.js"
-    ],
     "concurrency": 1,
     "failFast": false,
     "tap": false,
     "verbose": true
   },
-  "nyc": {
-    "cache": true,
-    "all": true,
+  "c8": {
+    "clean": true,
+    "per-file": true,
     "check-coverage": false,
     "include": [
       "src/**/*.js"
     ],
     "exclude": []
   },
+  "release-it": {
+    "github": {
+      "release": true
+    }
+  },
   "scripts": {
-    "docs": "jsdoc2md --private --example-lang js --template rm.hbs src/event-dispatcher.js > README.md; jsdoc2md --private --example-lang js src/event-dispatcher.js > docs/event-dispatcher.md; jsdoc2md --private --example-lang js src/event.js > docs/event.md",
-    "docs-serve": "docsify init ./docs && docsify serve ./docs",
-    "lint": "eslint .",
-    "make-types": "rm -fr types/ && mkdir types && tsc --project .tsconfig.json",
+    "docs": "jsdoc2md --configure ./jsdoc.conf.json --private --example-lang js --template rm.hbs src/event-dispatcher.js > README.md; jsdoc2md --configure ./jsdoc.conf.json --private --example-lang js src/event-dispatcher.js > docs/event-dispatcher.md; jsdoc2md --configure ./jsdoc.conf.json --private --example-lang js src/event.js > docs/event.md",
+    "lint": "eslint --ignore-pattern \"/test/\" . ",
+    "make-types": "tsc --module nodenext --project ./tsconfig.json",
     "release": "release-it",
-    "report": "nyc report --reporter=html",
-    "test": "NODE_ENV=test nyc ava --serial",
+    "test": "NODE_ENV=test c8 ava --serial",
     "test-debug": "DEBUG=Uttori* NODE_ENV=test ava --serial --concurrency=1",
     "validate": "npm ls"
   },

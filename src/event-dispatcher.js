@@ -1,11 +1,12 @@
-/** @type {Function} */
-let debug = () => {}; try { debug = require('debug')('Uttori.EventDispatcher'); } catch {}
-const UttoriEvent = require('./event');
+import UttoriEvent from './event.js';
+
+let debug = (..._) => {};
+/* c8 ignore next */
+try { const { default: d } = await import('debug'); debug = d('Uttori.EventDispatcher'); } catch {}
 
 /**
  * An event bus system for registering, unregistering and triggering events.
- *
- * @property {object} events The collection of events to listen for.
+ * @property {Record<string, UttoriEvent>} events The collection of events to listen for.
  * @example <caption>new EventDispatcher()</caption>
  * const bus = new EventDispatcher();
  * bus.on('update', callback);
@@ -16,16 +17,15 @@ const UttoriEvent = require('./event');
 class EventDispatcher {
   /**
    * Creates a new EventDispatcher instance.
-   *
    * @class
    */
   constructor() {
+    /** @type {Record<string, UttoriEvent>} */
     this.events = {};
   }
 
   /**
    * Verifies an event label.
-   *
    * @param {string} label The human readable identifier of the event.
    * @example
    * EventDispatcher.check('event'); // No Error
@@ -42,7 +42,6 @@ class EventDispatcher {
 
   /**
    * Fires off an event with passed in data and context for a given label.
-   *
    * @async
    * @param {string} label The human readable identifier of the event.
    * @param {*} data Data to be used, updated, or modified by event callbacks.
@@ -66,12 +65,11 @@ class EventDispatcher {
 
   /**
    * Fires off an event with passed in data and context for a given label.
-   *
    * @async
    * @param {string} label The human readable identifier of the event.
-   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
-   * @returns {Promise<*>} The original input data, either modified or untouched.
+   * @returns {Promise<unknown>} The original input data, either modified or untouched.
    * @example
    * output = await bus.filter('loaded', { data }, this);
    */
@@ -89,9 +87,8 @@ class EventDispatcher {
 
   /**
    * Fires off an event with passed in data and context for a given label.
-   *
    * @param {string} label The human readable identifier of the event.
-   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
    * @example
    * bus.dispatch('loaded', { data }, this);
@@ -109,12 +106,11 @@ class EventDispatcher {
 
   /**
    * Fires off an event with passed in data and context for a given label and returns an array of the results.
-   *
    * @async
    * @param {string} label The human readable identifier of the event.
-   * @param {*} data Data to be used by event callbacks.
+   * @param {unknown} data Data to be used by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
-   * @returns {Promise<Array>} An array of the results.
+   * @returns {Promise<unknown[]>} An array of the results.
    * @example
    * popular = await bus.fetch('popular-documents', { limit: 10 }, this);
    */
@@ -122,6 +118,7 @@ class EventDispatcher {
     debug('fetch:', label);
     EventDispatcher.check(label);
     const event = this.events[label];
+    /** @type {unknown[]} */
     let results = [];
     if (event) {
       results = await event.fetch(data, context);
@@ -134,9 +131,8 @@ class EventDispatcher {
   /**
    * Add a function to an event that will be called when the label is dispatched.
    * If no label is found, one is created.
-   *
    * @param {string} label The human readable identifier of the event.
-   * @param {Function} callback Function to be called when the event is fired.
+   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be called when the event is fired.
    * @example
    * bus.on('loaded', callback);
    */
@@ -153,9 +149,8 @@ class EventDispatcher {
   /**
    * Add a function to an event that will be called only once when the label is dispatched.
    * Uses the `EventDispatcher.on` method with a function wrapped to call off on use.
-   *
    * @param {string} label The human readable identifier of the event.
-   * @param {Function} callback Function to be called when the event is fired.
+   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be called when the event is fired.
    * @example
    * bus.once('one-time-process', callback);
    */
@@ -170,9 +165,8 @@ class EventDispatcher {
 
   /**
    * Remove a function from an event.
-   *
    * @param {string} label The human readable identifier of the event.
-   * @param {Function} callback Function to be removed.
+   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be removed.
    * @example
    * bus.off('loaded', callback);
    */
@@ -190,4 +184,4 @@ class EventDispatcher {
   }
 }
 
-module.exports = EventDispatcher;
+export default EventDispatcher;

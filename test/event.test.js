@@ -1,7 +1,7 @@
 /* eslint-disable ramda/prefer-ramda-boolean, no-new */
-const test = require('ava');
-const sinon = require('sinon');
-const { UttoriEvent } = require('../src');
+import test from 'ava';
+import sinon from 'sinon';
+import { UttoriEvent } from '../src/index.js';
 
 const a = () => false;
 const b = () => true;

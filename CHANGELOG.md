@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0](https://github.com/uttori/uttori-wiki/compare/v2.0.1...v3.0.0) - 2024-01-13
+
+- 💥 BREAKING CHANGES!
+- 🧰 Remove support for CommonJS, now requires ESM support
+- 🎁 Update dependencies
+- 🛠 Standardize types
+- 🛠 Update ESLint configuration
+- 🛠 Update documentation
+
 ## [2.0.2](https://github.com/uttori/uttori-event-dispatcher/compare/v2.0.0...v2.0.1) - 2022-12-17
 
 - 🎁 Update dev dependencies

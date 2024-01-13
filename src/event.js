@@ -1,12 +1,14 @@
-/** @type {Function} */
-let debug = () => {}; try { debug = require('debug')('Uttori.UttoriEvent'); } catch {}
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+let debug = (..._) => {};
+/* c8 ignore next */
+try { const { default: d } = await import('debug'); debug = d('Uttori.UttoriEvent'); } catch {}
 
 /**
  * Event class used in conjunction with the Event Dispatcher.
- *
  * @property {string} label The human readable identifier of the event.
- * @property {Function[]} callbacks The functions to be executed when an event is fired.
- * @example <caption>new UttoriEvent(label)</caption>
+ * @property {import('../dist/custom.js').UttoriEventCallback[]} callbacks The functions to be executed when an event is fired.
+ * @example
  * const event = new UttoriEvent('event-label');
  * event.register(callback);
  * event.fire({ data });
@@ -15,7 +17,6 @@ let debug = () => {}; try { debug = require('debug')('Uttori.UttoriEvent'); } ca
 class UttoriEvent {
   /**
    * Creates a new event UttoriEvent.
-   *
    * @param {string} label The human readable identifier of the event.
    * @class
    */
@@ -25,14 +26,15 @@ class UttoriEvent {
       debug(error);
       throw new Error(error);
     }
+    /** @type {string} */
     this.label = label;
+    /** @type {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>[]} */
     this.callbacks = [];
   }
 
   /**
    * Add a function to an event that will be called when the event is fired.
-   *
-   * @param {Function} callback Function to be called when the event is fired.
+   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be called when the event is fired.
    * @example
    * event.register(callback);
    */
@@ -53,8 +55,7 @@ class UttoriEvent {
 
   /**
    * Remove a function from an event that would be called when the event is fired.
-   *
-   * @param {Function} callback Function to be removed from the event.
+   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be removed from the event.
    * @example
    * event.unregister(callback);
    */
@@ -75,19 +76,19 @@ class UttoriEvent {
 
   /**
    * Executes all the callbacks present on an event with passed in data and context.
-   *
    * @async
-   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
-   * @returns {Promise} A Promise resolving to the result of the check, either true (invalid) or false (valid).
+   * @returns {Promise<boolean>} A Promise resolving to the result of the check, either true (invalid) or false (valid).
    * @example
-   * is_spam = await event.validate({ data }, this);
+   * const is_spam = await event.validate({ data }, this);
    */
   async validate(data, context) {
     debug('validate:', this.label);
     const callbacks = this.callbacks.slice(0);
     debug('callbacks:', callbacks.length);
-    const results = await Promise.all(callbacks.map(async (callback) => callback(data, context)));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    const results = await Promise.all(callbacks.map(async (callback) => await callback(data, context)));
     debug('callback results:', results);
     // Check for anything that isn't false, and invert the result.
     const valid = !results.every((element) => {
@@ -102,15 +103,14 @@ class UttoriEvent {
 
   /**
    * Executes all the callbacks present on an event with passed in data and context.
-   *
    * @async
-   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
-   * @returns {Promise} A Promise resolving to the original input data, either modified or untouched.
+   * @returns {Promise<unknown>} A Promise resolving to the original input data, either modified or untouched.
    * @example
    * output = await event.filter({ data }, this);
    */
-  async filter(data, context) {
+  filter(data, context) {
     debug('filter:', this.label);
     const callbacks = this.callbacks.slice(0);
     debug('callbacks:', callbacks.length);
@@ -131,8 +131,7 @@ class UttoriEvent {
 
   /**
    * Executes all the callbacks present on an event with passed in data and context.
-   *
-   * @param {*} data Data to be used, updated, or modified by event callbacks.
+   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
    * @example
    * event.fire({ data }, this);
@@ -141,18 +140,18 @@ class UttoriEvent {
     debug('fire:', this.label);
     const callbacks = this.callbacks.slice(0);
     debug('callbacks:', callbacks.length);
-    callbacks.forEach((callback) => {
+    for (const callback of callbacks) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       callback(data, context);
-    });
+    }
   }
 
   /**
    * Executes all the callbacks present on an event with passed in data and context and returns their output.
-   *
    * @async
-   * @param {*} data Data to be used by event callbacks.
+   * @param {unknown} data Data to be used by event callbacks.
    * @param {object} [context] Context to help with computing of the data.
-   * @returns {Promise<Array>} An array of the results from the fetch.
+   * @returns {Promise<unknown[]>} An array of the results from the fetch.
    * @example
    * output = await event.fetch({ data }, this);
    */
@@ -166,8 +165,7 @@ class UttoriEvent {
     // We then await it to resolve it and pass it to the first callback.
     // Each callback is awaited should the callback be async.
     const results = [];
-    for (let index = 0; index < callbacks.length; index++) {
-      const callback = callbacks[index];
+    for (const callback of callbacks) {
       const output = callback(data, context);
       results.push(output);
     }
@@ -176,4 +174,4 @@ class UttoriEvent {
   }
 }
 
-module.exports = UttoriEvent;
+export default UttoriEvent;
