@@ -28,13 +28,13 @@ class UttoriEvent {
     }
     /** @type {string} */
     this.label = label;
-    /** @type {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>[]} */
+    /** @type {import('../dist/custom.js').UttoriEventCallback[]} */
     this.callbacks = [];
   }
 
   /**
    * Add a function to an event that will be called when the event is fired.
-   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be called when the event is fired.
+   * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be called when the event is fired.
    * @example
    * event.register(callback);
    */
@@ -55,7 +55,7 @@ class UttoriEvent {
 
   /**
    * Remove a function from an event that would be called when the event is fired.
-   * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be removed from the event.
+   * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be removed from the event.
    * @example
    * event.unregister(callback);
    */
@@ -77,7 +77,8 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context.
    * @async
-   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+   * @template T The type of the data being processed.
+   * @param {T} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
    * @returns {Promise<boolean>} A Promise resolving to the result of the check, either true (invalid) or false (valid).
    * @example
@@ -104,9 +105,10 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context.
    * @async
-   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+   * @template T The type of the data being processed.
+   * @param {any} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
-   * @returns {Promise<unknown>} A Promise resolving to the original input data, either modified or untouched.
+   * @returns {Promise<T>} A Promise resolving to the original input data, either modified or untouched.
    * @example
    * output = await event.filter({ data }, this);
    */
@@ -131,7 +133,7 @@ class UttoriEvent {
 
   /**
    * Executes all the callbacks present on an event with passed in data and context.
-   * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+   * @param {any} data Data to be used, updated, or modified by event callbacks.
    * @param {object} [context] Context to help with updating or modification of the data.
    * @example
    * event.fire({ data }, this);
@@ -149,9 +151,10 @@ class UttoriEvent {
   /**
    * Executes all the callbacks present on an event with passed in data and context and returns their output.
    * @async
-   * @param {unknown} data Data to be used by event callbacks.
+   * @template T The type of the data being processed.
+   * @param {any} data Data to be used by event callbacks.
    * @param {object} [context] Context to help with computing of the data.
-   * @returns {Promise<unknown[]>} An array of the results from the fetch.
+   * @returns {Promise<T[]>} An array of the results from the fetch.
    * @example
    * output = await event.fetch({ data }, this);
    */
@@ -164,8 +167,10 @@ class UttoriEvent {
     // We seed a Promise of our input data.
     // We then await it to resolve it and pass it to the first callback.
     // Each callback is awaited should the callback be async.
+    /** @type {T[]} */
     const results = [];
     for (const callback of callbacks) {
+      /** @type {any} */
       const output = callback(data, context);
       results.push(output);
     }

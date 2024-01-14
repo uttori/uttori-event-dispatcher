@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.1](https://github.com/uttori/uttori-wiki/compare/v3.0.0...v3.0.1) - 2024-01-13
+
+- 🛠 Clean up some types with templates
+
 ## [3.0.0](https://github.com/uttori/uttori-wiki/compare/v2.0.1...v3.0.0) - 2024-01-13
 
 - 💥 BREAKING CHANGES!

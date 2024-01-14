@@ -18,59 +18,62 @@ declare class UttoriEvent {
     constructor(label: string);
     /** @type {string} */
     label: string;
-    /** @type {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>[]} */
-    callbacks: import('../dist/custom.js').UttoriEventCallback<unknown, unknown>[];
+    /** @type {import('../dist/custom.js').UttoriEventCallback[]} */
+    callbacks: import('../dist/custom.js').UttoriEventCallback[];
     /**
      * Add a function to an event that will be called when the event is fired.
-     * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be called when the event is fired.
+     * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be called when the event is fired.
      * @example
      * event.register(callback);
      */
-    register(callback: import('../dist/custom.js').UttoriEventCallback<unknown, unknown>): void;
+    register(callback: import('../dist/custom.js').UttoriEventCallback): void;
     /**
      * Remove a function from an event that would be called when the event is fired.
-     * @param {import('../dist/custom.js').UttoriEventCallback<unknown, unknown>} callback Function to be removed from the event.
+     * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be removed from the event.
      * @example
      * event.unregister(callback);
      */
-    unregister(callback: import('../dist/custom.js').UttoriEventCallback<unknown, unknown>): void;
+    unregister(callback: import('../dist/custom.js').UttoriEventCallback): void;
     /**
      * Executes all the callbacks present on an event with passed in data and context.
      * @async
-     * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+     * @template T The type of the data being processed.
+     * @param {T} data Data to be used, updated, or modified by event callbacks.
      * @param {object} [context] Context to help with updating or modification of the data.
      * @returns {Promise<boolean>} A Promise resolving to the result of the check, either true (invalid) or false (valid).
      * @example
      * const is_spam = await event.validate({ data }, this);
      */
-    validate(data: unknown, context?: object): Promise<boolean>;
+    validate<T>(data: T, context?: object): Promise<boolean>;
     /**
      * Executes all the callbacks present on an event with passed in data and context.
      * @async
-     * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+     * @template T The type of the data being processed.
+     * @param {any} data Data to be used, updated, or modified by event callbacks.
      * @param {object} [context] Context to help with updating or modification of the data.
-     * @returns {Promise<unknown>} A Promise resolving to the original input data, either modified or untouched.
+     * @returns {Promise<T>} A Promise resolving to the original input data, either modified or untouched.
      * @example
      * output = await event.filter({ data }, this);
      */
-    filter(data: unknown, context?: object): Promise<unknown>;
+    filter<T_1>(data: any, context?: object): Promise<T_1>;
     /**
      * Executes all the callbacks present on an event with passed in data and context.
-     * @param {unknown} data Data to be used, updated, or modified by event callbacks.
+     * @param {any} data Data to be used, updated, or modified by event callbacks.
      * @param {object} [context] Context to help with updating or modification of the data.
      * @example
      * event.fire({ data }, this);
      */
-    fire(data: unknown, context?: object): void;
+    fire(data: any, context?: object): void;
     /**
      * Executes all the callbacks present on an event with passed in data and context and returns their output.
      * @async
-     * @param {unknown} data Data to be used by event callbacks.
+     * @template T The type of the data being processed.
+     * @param {any} data Data to be used by event callbacks.
      * @param {object} [context] Context to help with computing of the data.
-     * @returns {Promise<unknown[]>} An array of the results from the fetch.
+     * @returns {Promise<T[]>} An array of the results from the fetch.
      * @example
      * output = await event.fetch({ data }, this);
      */
-    fetch(data: unknown, context?: object): Promise<unknown[]>;
+    fetch<T_2>(data: any, context?: object): Promise<T_2[]>;
 }
 //# sourceMappingURL=event.d.ts.map

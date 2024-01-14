@@ -64,13 +64,16 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./src/index.js"
+      "import": "./src/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./event": {
-      "import": "./src/event.js"
+      "import": "./src/event.js",
+      "types": "./dist/event.d.ts"
     },
     "./event-dispatcher": {
-      "import": "./src/event-dispatcher.js"
+      "import": "./src/event-dispatcher.js",
+      "types": "./dist/event-dispatcher.d.ts"
     }
   },
   "ava": {

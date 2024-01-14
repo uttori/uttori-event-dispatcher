@@ -19,9 +19,9 @@ Event class used in conjunction with the Event Dispatcher.
     * [.register(callback)](#UttoriEvent+register)
     * [.unregister(callback)](#UttoriEvent+unregister)
     * [.validate(data, [context])](#UttoriEvent+validate) ⇒ <code>Promise.&lt;boolean&gt;</code>
-    * [.filter(data, [context])](#UttoriEvent+filter) ⇒ <code>Promise.&lt;unknown&gt;</code>
+    * [.filter(data, [context])](#UttoriEvent+filter) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.fire(data, [context])](#UttoriEvent+fire)
-    * [.fetch(data, [context])](#UttoriEvent+fetch) ⇒ <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code>
+    * [.fetch(data, [context])](#UttoriEvent+fetch) ⇒ <code>Promise.&lt;Array.&lt;T&gt;&gt;</code>
 
 <a name="new_UttoriEvent_new"></a>
 
@@ -56,7 +56,7 @@ Add a function to an event that will be called when the event is fired.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>UttoriEventCallback.&lt;unknown, unknown&gt;</code> | Function to be called when the event is fired. |
+| callback | <code>UttoriEventCallback</code> | Function to be called when the event is fired. |
 
 **Example**  
 ```js
@@ -71,7 +71,7 @@ Remove a function from an event that would be called when the event is fired.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>UttoriEventCallback.&lt;unknown, unknown&gt;</code> | Function to be removed from the event. |
+| callback | <code>UttoriEventCallback</code> | Function to be removed from the event. |
 
 **Example**  
 ```js
@@ -87,7 +87,7 @@ Executes all the callbacks present on an event with passed in data and context.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>T</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
@@ -96,15 +96,15 @@ const is_spam = await event.validate({ data }, this);
 ```
 <a name="UttoriEvent+filter"></a>
 
-### uttoriEvent.filter(data, [context]) ⇒ <code>Promise.&lt;unknown&gt;</code>
+### uttoriEvent.filter(data, [context]) ⇒ <code>Promise.&lt;T&gt;</code>
 Executes all the callbacks present on an event with passed in data and context.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise.&lt;unknown&gt;</code> - A Promise resolving to the original input data, either modified or untouched.  
+**Returns**: <code>Promise.&lt;T&gt;</code> - A Promise resolving to the original input data, either modified or untouched.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>any</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
@@ -120,7 +120,7 @@ Executes all the callbacks present on an event with passed in data and context.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>unknown</code> | Data to be used, updated, or modified by event callbacks. |
+| data | <code>any</code> | Data to be used, updated, or modified by event callbacks. |
 | [context] | <code>object</code> | Context to help with updating or modification of the data. |
 
 **Example**  
@@ -129,15 +129,15 @@ event.fire({ data }, this);
 ```
 <a name="UttoriEvent+fetch"></a>
 
-### uttoriEvent.fetch(data, [context]) ⇒ <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code>
+### uttoriEvent.fetch(data, [context]) ⇒ <code>Promise.&lt;Array.&lt;T&gt;&gt;</code>
 Executes all the callbacks present on an event with passed in data and context and returns their output.
 
 **Kind**: instance method of [<code>UttoriEvent</code>](#UttoriEvent)  
-**Returns**: <code>Promise.&lt;Array.&lt;unknown&gt;&gt;</code> - An array of the results from the fetch.  
+**Returns**: <code>Promise.&lt;Array.&lt;T&gt;&gt;</code> - An array of the results from the fetch.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>unknown</code> | Data to be used by event callbacks. |
+| data | <code>any</code> | Data to be used by event callbacks. |
 | [context] | <code>object</code> | Context to help with computing of the data. |
 
 **Example**  

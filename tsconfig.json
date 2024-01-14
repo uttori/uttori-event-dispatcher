@@ -6,9 +6,6 @@
     "node_modules",
     "test/**/*"
   ],
-  "files": [
-    "dist/custom.d.ts"
-  ],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -32,11 +29,6 @@
     "target": "esnext",
     "removeComments": false,
     "skipLibCheck": true,
-    "declarationMap": true,
-    "types": ["node"],
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules/@uttori"
-    ]
+    "declarationMap": true
   }
 }
