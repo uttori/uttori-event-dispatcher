@@ -70,28 +70,28 @@ declare class EventDispatcher {
      * Add a function to an event that will be called when the label is dispatched.
      * If no label is found, one is created.
      * @param {string} label The human readable identifier of the event.
-     * @param {import('../dist/custom.js').UttoriEventCallback<any, any>} callback Function to be called when the event is fired.
+     * @param {import('./index.js').UttoriEventCallback} callback Function to be called when the event is fired.
      * @example
      * bus.on('loaded', callback);
      */
-    on(label: string, callback: import('../dist/custom.js').UttoriEventCallback<any, any>): void;
+    on(label: string, callback: import('./index.js').UttoriEventCallback): void;
     /**
      * Add a function to an event that will be called only once when the label is dispatched.
      * Uses the `EventDispatcher.on` method with a function wrapped to call off on use.
      * @param {string} label The human readable identifier of the event.
-     * @param {import('../dist/custom.js').UttoriEventCallback<any, any>} callback Function to be called when the event is fired.
+     * @param {import('./index.js').UttoriEventCallback} callback Function to be called when the event is fired.
      * @example
      * bus.once('one-time-process', callback);
      */
-    once(label: string, callback: import('../dist/custom.js').UttoriEventCallback<any, any>): void;
+    once(label: string, callback: import('./index.js').UttoriEventCallback): void;
     /**
      * Remove a function from an event.
      * @param {string} label The human readable identifier of the event.
-     * @param {import('../dist/custom.js').UttoriEventCallback<any, any>} callback Function to be removed.
+     * @param {import('./index.js').UttoriEventCallback} callback Function to be removed.
      * @example
      * bus.off('loaded', callback);
      */
-    off(label: string, callback: import('../dist/custom.js').UttoriEventCallback<any, any>): void;
+    off(label: string, callback: import('./index.js').UttoriEventCallback): void;
 }
 import UttoriEvent from './event.js';
 //# sourceMappingURL=event-dispatcher.d.ts.map

@@ -7,7 +7,7 @@ try { const { default: d } = await import('debug'); debug = d('Uttori.UttoriEven
 /**
  * Event class used in conjunction with the Event Dispatcher.
  * @property {string} label The human readable identifier of the event.
- * @property {import('../dist/custom.js').UttoriEventCallback[]} callbacks The functions to be executed when an event is fired.
+ * @property {import('./index.js').UttoriEventCallback[]} callbacks The functions to be executed when an event is fired.
  * @example
  * const event = new UttoriEvent('event-label');
  * event.register(callback);
@@ -28,13 +28,13 @@ class UttoriEvent {
     }
     /** @type {string} */
     this.label = label;
-    /** @type {import('../dist/custom.js').UttoriEventCallback[]} */
+    /** @type {import('./index.js').UttoriEventCallback[]} */
     this.callbacks = [];
   }
 
   /**
    * Add a function to an event that will be called when the event is fired.
-   * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be called when the event is fired.
+   * @param {import('./index.js').UttoriEventCallback} callback Function to be called when the event is fired.
    * @example
    * event.register(callback);
    */
@@ -55,7 +55,7 @@ class UttoriEvent {
 
   /**
    * Remove a function from an event that would be called when the event is fired.
-   * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be removed from the event.
+   * @param {import('./index.js').UttoriEventCallback} callback Function to be removed from the event.
    * @example
    * event.unregister(callback);
    */

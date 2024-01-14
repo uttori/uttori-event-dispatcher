@@ -2,7 +2,7 @@ export default UttoriEvent;
 /**
  * Event class used in conjunction with the Event Dispatcher.
  * @property {string} label The human readable identifier of the event.
- * @property {import('../dist/custom.js').UttoriEventCallback[]} callbacks The functions to be executed when an event is fired.
+ * @property {import('./index.js').UttoriEventCallback[]} callbacks The functions to be executed when an event is fired.
  * @example
  * const event = new UttoriEvent('event-label');
  * event.register(callback);
@@ -18,22 +18,22 @@ declare class UttoriEvent {
     constructor(label: string);
     /** @type {string} */
     label: string;
-    /** @type {import('../dist/custom.js').UttoriEventCallback[]} */
-    callbacks: import('../dist/custom.js').UttoriEventCallback[];
+    /** @type {import('./index.js').UttoriEventCallback[]} */
+    callbacks: import('./index.js').UttoriEventCallback[];
     /**
      * Add a function to an event that will be called when the event is fired.
-     * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be called when the event is fired.
+     * @param {import('./index.js').UttoriEventCallback} callback Function to be called when the event is fired.
      * @example
      * event.register(callback);
      */
-    register(callback: import('../dist/custom.js').UttoriEventCallback): void;
+    register(callback: import('./index.js').UttoriEventCallback): void;
     /**
      * Remove a function from an event that would be called when the event is fired.
-     * @param {import('../dist/custom.js').UttoriEventCallback} callback Function to be removed from the event.
+     * @param {import('./index.js').UttoriEventCallback} callback Function to be removed from the event.
      * @example
      * event.unregister(callback);
      */
-    unregister(callback: import('../dist/custom.js').UttoriEventCallback): void;
+    unregister(callback: import('./index.js').UttoriEventCallback): void;
     /**
      * Executes all the callbacks present on an event with passed in data and context.
      * @async
